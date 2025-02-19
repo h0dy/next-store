@@ -1,8 +1,12 @@
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import Hero from "@/components/home/Hero";
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
+    <>
+      <Hero />
+      <FeaturedProducts />
+    </>
   );
 };
 
