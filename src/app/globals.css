@@ -92,6 +92,9 @@
   @apply absolute size-6 -top-3 -right-3 bg-primary text-secondary rounded-full flex items-center justify-center
 }
 
+.drop-item {
+  @apply cursor-pointer
+}
 /* #endregion navbar container */
 
 /* #region home page */
