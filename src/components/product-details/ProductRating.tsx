@@ -9,7 +9,7 @@ const ProductRating = ({ productId }: { productId: string }) => {
   const countValue = `(${count}) reviews`;
   return (
     <span className={className}>
-      <Star />
+      <Star  size="18"/>
       {rating}
       {countValue}
     </span>
