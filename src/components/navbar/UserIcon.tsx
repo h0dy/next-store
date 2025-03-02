@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { CircleUserRound } from "lucide-react";
+import Image from "next/image";
 
 const UserIcon = async () => {
   const user = await currentUser();
@@ -7,7 +8,7 @@ const UserIcon = async () => {
 
   if (profileImage) {
     return (
-      <img
+      <Image
         src={profileImage}
         alt="user avatar"
         className="size-6 rounded-full object-cover"
