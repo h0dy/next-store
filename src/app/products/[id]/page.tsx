@@ -1,5 +1,5 @@
 import BreadCrumbs from "@/components/product-details/BreadCrumbs";
-import { fetchProduct } from "@/utils/action";
+import { fetchProduct } from "@/utils/actions";
 import { formatCurrency } from "@/utils/format";
 import Image from "next/image";
 import FavoriteToggleButton from "../../../components/products/FavoriteToggleButton";

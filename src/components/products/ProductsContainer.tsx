@@ -1,4 +1,4 @@
-import { fetchAllProducts } from "@/utils/action";
+import { fetchAllProducts } from "@/utils/actions";
 import { Separator } from "../ui/separator";
 import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";

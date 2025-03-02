@@ -3,7 +3,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-  DropdownMenuSeparator
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 import { LucideAlignLeft } from "lucide-react";
@@ -14,8 +14,11 @@ import UserIcon from "./UserIcon";
 import { SignedOut, SignedIn, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 import SignOutLink from "./SignOutLink";
+import { auth } from "@clerk/nextjs/server";
 
 const LinksDropdown = () => {
+  const { userId } = auth();
+  const isAdmin = userId === process.env.ADMIN_USER_ID;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,6 +44,7 @@ const LinksDropdown = () => {
         <SignedIn>
           {links.map((link) => {
             const { href, label } = link;
+            if (label === "dashboard" && !isAdmin) return null;
             return (
               <DropdownMenuItem key={href}>
                 <Link className="capitalize " href={href}>
