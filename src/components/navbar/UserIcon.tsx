@@ -12,6 +12,8 @@ const UserIcon = async () => {
         src={profileImage}
         alt="user avatar"
         className="size-6 rounded-full object-cover"
+        width={25}
+        height={25}
       />
     );
   }
