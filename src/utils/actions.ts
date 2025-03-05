@@ -114,7 +114,7 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
   }
 };
 
-export const fetchAdminProductsDetails = async (productId: string) => {
+export const fetchAdminProductDetails = async (productId: string) => {
   await getAdminUser();
   const product = await db.product.findUnique({
     where: {
@@ -145,11 +145,10 @@ export const updateProductAction = async (
       },
     });
     revalidatePath(`/admin/products/${productId}/edit`);
+    return { message: "product updated successfully" };
   } catch (error) {
     return renderError(error);
   }
-
-  return { message: "product updated successfully" };
 };
 
 export const updateProductImageAction = async (
@@ -176,6 +175,7 @@ export const updateProductImageAction = async (
       },
     });
     revalidatePath(`/admin/products/${productId}/edit`);
+    return { message: "image updated successfully" };
   } catch (error) {
     return renderError(error);
   }

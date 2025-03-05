@@ -6,15 +6,19 @@ import ImageInputContainer from "@/components/form/ImageInputContainer";
 import PriceInput from "@/components/form/PriceInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
 import {
-  fetchAdminProductsDetails,
+  fetchAdminProductDetails,
   updateProductAction,
   updateProductImageAction,
 } from "@/utils/actions";
 
-const EditProductPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
-  const { name, company, description, featured, price, image } =
-    await fetchAdminProductsDetails(id);
+async function EditProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const product = await fetchAdminProductDetails(id);
+  const { name, company, description, featured, price, image } = product;
 
   return (
     <section>
@@ -60,6 +64,6 @@ const EditProductPage = async ({ params }: { params: { id: string } }) => {
       </div>
     </section>
   );
-};
+}
 
 export default EditProductPage;
