@@ -95,6 +95,7 @@
 .drop-item {
   @apply cursor-pointer
 }
+
 /* #endregion navbar container */
 
 /* #region home page */
@@ -149,5 +150,6 @@
 .products-header {
   @apply flex justify-between items-center
 }
+
 
 /* #endregion products page */

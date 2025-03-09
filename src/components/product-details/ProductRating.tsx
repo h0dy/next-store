@@ -1,15 +1,15 @@
+import { fetchProductRating } from "@/utils/actions";
 import { Star } from "lucide-react";
 
-const ProductRating = ({ productId }: { productId: string }) => {
-  // temp
-  console.log(productId);
-  const rating = 4.2;
-  const count = 25;
+const ProductRating = async ({ productId }: { productId: string }) => {
+  const { count, rating } = await fetchProductRating(productId);
+
   const className = `flex gap-1 items-center text-md mt-1 mb-4`;
-  const countValue = `(${count}) reviews`;
+  const countValue = ` (${count}) reviews`;
+
   return (
     <span className={className}>
-      <Star  size="18"/>
+      <Star fill="black" size="14" />
       {rating}
       {countValue}
     </span>

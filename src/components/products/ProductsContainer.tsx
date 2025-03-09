@@ -5,6 +5,8 @@ import ProductsList from "./ProductsList";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { LayoutGrid, List } from "lucide-react";
+import { Suspense } from "react";
+import LoadingContainer from "../global/LoadingContainer";
 
 const ProductsContainer = async ({
   layout,
@@ -51,17 +53,19 @@ const ProductsContainer = async ({
       </section>
 
       {/* PRODUCTS */}
-      <div className="">
-        {!products.length ? (
-          <h5 className="text-2xl mt-16 capitalize">
-            sorry, no products matched your search
-          </h5>
-        ) : layout === "grid" ? (
-          <ProductsGrid products={products} />
-        ) : (
-          <ProductsList products={products} />
-        )}
-      </div>
+      <Suspense fallback={<LoadingContainer />}>
+        <div className="">
+          {!products.length ? (
+            <h5 className="text-2xl mt-16 capitalize">
+              sorry, no products matched your search
+            </h5>
+          ) : layout === "grid" ? (
+            <ProductsGrid products={products} />
+          ) : (
+            <ProductsList products={products} />
+          )}
+        </div>
+      </Suspense>
     </>
   );
 };
