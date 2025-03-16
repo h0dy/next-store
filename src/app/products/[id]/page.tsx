@@ -1,5 +1,5 @@
 import BreadCrumbs from "@/components/product-details/BreadCrumbs";
-import { fetchProduct, findExistingReview } from "@/utils/actions";
+import { fetchSingleProduct, findExistingReview } from "@/utils/actions";
 import { formatCurrency } from "@/utils/format";
 import Image from "next/image";
 import FavoriteToggleButton from "../../../components/products/FavoriteToggleButton";
@@ -16,9 +16,11 @@ const SinglePageProduct = async ({
 }) => {
   const productId = (await params).id;
 
-  const { name, image, company, price, description } = await fetchProduct({
-    id: productId,
-  });
+  const { name, image, company, price, description } = await fetchSingleProduct(
+    {
+      id: productId,
+    }
+  );
 
   const { userId } = auth();
   const reviewDoesNotExist =
@@ -54,7 +56,7 @@ const SinglePageProduct = async ({
             {riyalAmount}
           </p>
           <p className="mt-6 leading-8 text-muted-foreground">{description}</p>
-          <AddToCart />
+          <AddToCart productId={productId} />
         </div>
       </div>
 

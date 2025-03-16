@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ShoppingBag } from "lucide-react";
+import { fetchCartItems } from "@/utils/actions";
 
 const CartButton = async () => {
-  const numItemInCart = 9;
+  const numItemInCart = await fetchCartItems();
 
   return (
     <Button
@@ -14,7 +15,9 @@ const CartButton = async () => {
     >
       <Link className="size-6" href="/cart">
         <ShoppingBag size={40} />
-        <span className="cart-items-num">{numItemInCart}</span>
+        {numItemInCart > 0 && (
+          <span className="cart-items-num">{numItemInCart}</span>
+        )}
       </Link>
     </Button>
   );
