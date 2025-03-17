@@ -1,4 +1,3 @@
-import { SectionTitle } from "@/components/global/SectionTitle";
 import {
   Table,
   TableCaption,
@@ -8,7 +7,7 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { fetchAdminOrders, fetchUserOrders } from "@/utils/actions";
+import { fetchAdminOrders } from "@/utils/actions";
 import { formatCurrency, formatDate } from "@/utils/format";
 
 const SalesPage = async () => {
