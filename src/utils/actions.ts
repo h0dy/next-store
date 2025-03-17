@@ -527,3 +527,55 @@ export const updateCartItemAction = async ({
     return renderError(error);
   }
 };
+
+export const createOrderAction = async (
+  prevState: unknown,
+  formData: FormData
+) => {
+  const user = await getAuthUser();
+
+  try {
+    const { orderTotal, tax, shipping, numItemsInCart, id } =
+      await fetchOrCreateCart({
+        userId: user.id,
+        errorOnFailure: true,
+      });
+
+    const order = await db.order.create({
+      data: {
+        clerkId: user.id,
+        products: numItemsInCart,
+        orderTotal,
+        tax,
+        shipping,
+        email: user.emailAddresses[0].emailAddress,
+      },
+    });
+
+    await db.cart.delete({ where: { id } });
+  } catch (error) {
+    return renderError(error);
+  }
+
+  redirect("/orders");
+};
+
+export const fetchUserOrders = async () => {
+  const user = await getAuthUser();
+  const orders = await db.order.findMany({
+    where: { clerkId: user.id, isPaid: true },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return orders;
+};
+
+export const fetchAdminOrders = async () => {
+  await getAdminUser();
+  const orders = await db.order.findMany({
+    where: { isPaid: true },
+    orderBy: { createdAt: "desc" },
+  });
+  return orders;
+};
